@@ -15,7 +15,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="../node_modules/angular-modal-service/dst/angular-modal-service.min.js"></script>
-
+    <script src="../node_modules/angular-ui-mask/dist/mask.min.js"></script>
     <script src="app.js"></script>
 
     <!-- datatables reference -->
@@ -44,16 +44,20 @@
 </div>
 
 <div ng-show='step2_show'>
-    <label>{{user.email}}</label>
+    <label>{{user.firstName}}'s car and cellphone:</label>
+    <br>
     <form ng-submit='step2_click()'>
         <ng-form >
 <!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model userCar.brand and use that to search the array in second ng-repeat) -->
                 <select ng-model="userCar.brand">
-                <option ng-repeat="(brand,models) in cars">{{brand}}</option>
+                    <option ng-repeat="(brand,models) in cars">{{brand}}</option>
                 </select>
+                <br>
                 <select ng-model="userCar.model">
-                <option ng-repeat="model in cars[userCar.brand]">{{model}}</option>
+                    <option ng-repeat="model in cars[userCar.brand]">{{model}}</option>
                 </select>
+                <br>
+                <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x">
 
         <input type="submit" id="submit" value="next" />
         </ng-form>

@@ -1,4 +1,4 @@
-var trialModule = angular.module('ledTrial',['angularModalService']);
+var trialModule = angular.module('ledTrial',['angularModalService','ui.mask']);
 
 angular.module('ledTrial').controller('ledCtrl',
     function ($scope,ModalService) {
