@@ -23,15 +23,16 @@ angular.module('ledTrial').controller('ledCtrl',
     }
 
     $scope.step2_click = function(){
-        $scope.step2_show = false;
+        //$scope.step2_show = false;
 
     var modalInstance = $modal.open({
-      templateUrl: 'yesno.html',
+      templateUrl: 'SaveCancel.html',
       controller: ModalInstanceCtrl,
       resolve: {
         user: function () {
           return $scope.user;
-      }
+      },
+
     }
 
   });

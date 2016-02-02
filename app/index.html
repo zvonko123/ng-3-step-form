@@ -50,28 +50,30 @@
     <form ng-submit='step2_click()'>
         <ng-form >
 <!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model userCar.brand and use that to search the array in second ng-repeat) -->
-                <select ng-model="userCar.brand">
+                <select name='carBrand' ng-model="user.carBrand" class='form-control' required>
                     <option ng-repeat="(brand,models) in cars">{{brand}}</option>
                 </select>
                 <br>
-                <select ng-model="userCar.model">
-                    <option ng-repeat="model in cars[userCar.brand]">{{model}}</option>
+                <select name='carModel' ng-model="user.carModel" class='form-control' required>
+                    <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
                 </select>
+                <span ng-show="myForm.carBrand.$invalid">Select brand of car</span>
                 <br>
-                <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x">
+                <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x" required>
 
         <input type="submit" id="submit" value="next" />
         </ng-form>
     </form>
 </div>
 
-<script type="text/ng-template" id="yesno.html">
+<script type="text/ng-template" id="SaveCancel.html">
         <div class="modal-header">
             <h3>registration details!</h3>
         </div>
         <div class="modal-body">
             <ul>
-                <li ng-repeat="data in user">
+                <li ng-repeat="userData in user">
+                <span>{{userData}}</span>
                 </li>
             </ul>
         </div>
