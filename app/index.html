@@ -45,7 +45,19 @@
 
 <div ng-show='step2_show'>
     <label>{{user.email}}</label>
-    <button ng-click="step2_click()">{{step2}}</button>
+    <form ng-submit='step2_click()'>
+        <ng-form >
+<!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model userCar.brand and use that to search the array in second ng-repeat) -->
+                <select ng-model="userCar.brand">
+                <option ng-repeat="(brand,models) in cars">{{brand}}</option>
+                </select>
+                <select ng-model="userCar.model">
+                <option ng-repeat="model in cars[userCar.brand]">{{model}}</option>
+                </select>
+
+        <input type="submit" id="submit" value="next" />
+        </ng-form>
+    </form>
 </div>
 
 

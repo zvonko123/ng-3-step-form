@@ -4,11 +4,17 @@ angular.module('ledTrial').controller('ledCtrl',
     function ($scope,ModalService) {
     $scope.step1 = "Go";
     $scope.step2 = "Go Again";
-    $scope.step3 = "save data";
+
 
     $scope.step1_show = true;
     $scope.step2_show = false;
-    $scope.step3_show = false;
+
+    //array for dynamic selects
+    $scope.cars = {
+    "Mazda":["3","5"],
+    "Honda":["Civic","Accord"]
+    };
+
 
     $scope.step1_click = function(){
         $scope.step1_show = false;
