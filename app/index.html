@@ -30,7 +30,7 @@
 
 
 <div ng-show='step1_show'>
-        <form ng-submit='step1_click()'>
+        <form ng-submit='step12_change()'>
         <ng-form >
             <label>first name:</label>
             <input type="text" class="form-control" name="first_name" ng-model="user.firstName" required>
@@ -47,9 +47,9 @@
 <div ng-show='step2_show'>
     <label>{{user.firstName}}'s car and cellphone:</label>
     <br>
-    <form ng-submit='step2_click()'>
+    <form ng-submit='step2_next()'>
         <ng-form >
-<!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model userCar.brand and use that to search the array in second ng-repeat) -->
+<!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model user.carBrand and use that as the key to search the array in second ng-repeat) -->
                 <select name='carBrand' ng-model="user.carBrand" class='form-control' required>
                     <option ng-repeat="(brand,models) in cars">{{brand}}</option>
                 </select>
@@ -64,6 +64,7 @@
         <input type="submit" id="submit" value="next" />
         </ng-form>
     </form>
+        <button ng-click="step12_change()">back</button>
 </div>
 
 <script type="text/ng-template" id="SaveCancel.html">

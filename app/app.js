@@ -16,13 +16,20 @@ angular.module('ledTrial').controller('ledCtrl',
     };
 
 
-    $scope.step1_click = function(){
-        $scope.step1_show = false;
-        $scope.step2_show = true;
 
-    }
+    $scope.step12_change = function(){
+        if ($scope.step1_show)
+        {
+            $scope.step1_show = false;
+            $scope.step2_show = true;
+        }
+        else{
+            $scope.step2_show = false;
+            $scope.step1_show = true;
+        }
+    };
 
-    $scope.step2_click = function(){
+    $scope.step2_next = function(){
         //$scope.step2_show = false;
 
     var modalInstance = $modal.open({
