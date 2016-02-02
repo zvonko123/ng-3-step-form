@@ -28,12 +28,24 @@
 <div ng-app="ledTrial" ng-controller="ledCtrl">
 
 
-<div ng-show='step1_show' ng-click="step1_click()">
-    <button>{{step1}}</button>
+<div ng-show='step1_show'>
+        <form ng-submit='step1_click()'>
+        <ng-form >
+            <label>first name:</label>
+            <input type="text" class="form-control" name="first_name" ng-model="user.firstName" required>
+            <label>last name:</label>
+            <input type="text" class="form-control" name="last_name" ng-model="user.lastName" required>
+            <label>email:</label>
+            <input type="email" class="form-control" name="email" ng-model="user.email" required>
+            <p class="help-block" ng-show="userFieldForm.email.$invalid">Valid Email Required</p>
+        <input type="submit" id="submit" value="next" />
+        </ng-form>
+    </form>
 </div>
 
-<div ng-show='step2_show' ng-click="step2_click()">
-    <button>{{step2}}</button>
+<div ng-show='step2_show'>
+    <label>{{user.email}}</label>
+    <button ng-click="step2_click()">{{step2}}</button>
 </div>
 
 
