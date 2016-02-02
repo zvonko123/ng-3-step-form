@@ -50,14 +50,16 @@
     <form ng-submit='step2_next()'>
         <ng-form >
 <!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model user.carBrand and use that as the key to search the array in second ng-repeat) -->
-                <select name='carBrand' ng-model="user.carBrand" class='form-control' required>
-                    <option ng-repeat="(brand,models) in cars">{{brand}}</option>
-                </select>
-                <br>
-                <select name='carModel' ng-model="user.carModel" class='form-control' required>
-                    <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
-                </select>
-                <span ng-show="myForm.carBrand.$invalid">Select brand of car</span>
+        <select name='carBrand' ng-model="user.carBrand" class='form-control' ngRequired>
+                <option ng-repeat="(brand,models) in cars">{{brand}}</option>
+            </select>
+
+            <br>
+        <select name='carModel' ng-model="user.carModel" class='form-control' >
+                <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
+            </select>
+        <select ng-model="user.carModel" class='form-control' ng-options=""
+                    <span ng-show="myForm.carBrand.$invalid">Select brand of car</span>
                 <br>
                 <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x" required>
 

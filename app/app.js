@@ -9,13 +9,11 @@ angular.module('ledTrial').controller('ledCtrl',
     $scope.step1_show = true;
     $scope.step2_show = false;
 
-    //array for dynamic selects
+    //array for dynamic selects, we take the brand name from bound model and use it as key for second select loop
     $scope.cars = {
     "Mazda":["3","5"],
     "Honda":["Civic","Accord"]
     };
-
-
 
     $scope.step12_change = function(){
         if ($scope.step1_show)
