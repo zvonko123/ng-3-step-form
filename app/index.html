@@ -6,6 +6,7 @@
     <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -20,7 +21,7 @@
 
     <!-- datatables reference -->
     <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
-    <script src="../angular-datatables.min.js"></script>
+
 
 
 </head>
@@ -63,6 +64,22 @@
         </ng-form>
     </form>
 </div>
+
+<script type="text/ng-template" id="yesno.html">
+        <div class="modal-header">
+            <h3>registration details!</h3>
+        </div>
+        <div class="modal-body">
+            <ul>
+                <li ng-repeat="data in user">
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">Save</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+</script>
 
 
 

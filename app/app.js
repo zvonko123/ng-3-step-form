@@ -1,7 +1,7 @@
-var trialModule = angular.module('ledTrial',['angularModalService','ui.mask']);
+var trialModule = angular.module('ledTrial',['ui.bootstrap','ui.mask']);
 
 angular.module('ledTrial').controller('ledCtrl',
-    function ($scope,ModalService) {
+    function ($scope,$modal) {
     $scope.step1 = "Go";
     $scope.step2 = "Go Again";
 
@@ -25,26 +25,34 @@ angular.module('ledTrial').controller('ledCtrl',
     $scope.step2_click = function(){
         $scope.step2_show = false;
 
-        ModalService.showModal({
-        templateUrl: "yesno.html",
-        controller: "saveCtrl"
-    }).then(function(modal) {
-        modal.element.modal();
-        modal.close.then(function(result) {
-        $scope.saveResult = result ? "Save success" : "";
-      });
-    });
+    var modalInstance = $modal.open({
+      templateUrl: 'yesno.html',
+      controller: ModalInstanceCtrl,
+      resolve: {
+        user: function () {
+          return $scope.user;
+      }
+    }
 
+  });
+}
+
+
+var ModalInstanceCtrl = function ($scope, $modalInstance, user) {
+
+  $scope.user = user;
+
+  $scope.ok = function () {
+    //save here
+    $modalInstance.close();
   };
 
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
 
 });
 
-angular.module('ledTrial').controller('saveCtrl', ['$scope', 'close', function($scope, close) {
 
-  $scope.close = function(result) {
-      close(result, 500); // close, but give 500ms for bootstrap to animate
-  };
-
-}]);
 
