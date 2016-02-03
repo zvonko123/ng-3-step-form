@@ -1,7 +1,7 @@
-var trialModule = angular.module('ledTrial',['ui.bootstrap','ui.mask']);
+var trialModule = angular.module('ledTrial',['ui.bootstrap','ui.mask','ngStorage']);
 
 angular.module('ledTrial').controller('ledCtrl',
-    function ($scope,$modal) {
+    function ($scope,$modal,$localStorage) {
     $scope.step1 = "Go";
     $scope.step2 = "Go Again";
 
@@ -36,21 +36,38 @@ angular.module('ledTrial').controller('ledCtrl',
       resolve: {
         user: function () {
           return $scope.user;
-      },
-
+      }
     }
 
   });
+    modalInstance.result.then(function() {
+          //show users
+          $scope.step2_show = false;
+      }, function() {
+        //modal dismissed
+        console.log('Modal dismissed at: ' + new Date());
+      });
+
 }
 
 
-var ModalInstanceCtrl = function ($scope, $modalInstance, user) {
+var ModalInstanceCtrl = function ($scope, $modalInstance, user,$localStorage) {
 
   $scope.user = user;
 
+  $scope.$storage = $localStorage;
   $scope.ok = function () {
     //save here
+    if ($scope.$storage.users)
+    {
+      $scope.$storage.users.push(user);
+    }
+    else{
+      $scope.$storage.users = [];
+      $scope.$storage.users.push(user);
+    }
     $modalInstance.close();
+
   };
 
   $scope.cancel = function () {
