@@ -27,6 +27,11 @@ angular.module('ledTrial').controller('ledCtrl',
         }
     };
 
+
+    //fetch users from localStorage
+    $scope.$storage = $localStorage;
+    $scope.users = $scope.$storage.users;
+
     $scope.step2_next = function(){
         //$scope.step2_show = false;
 
@@ -41,7 +46,7 @@ angular.module('ledTrial').controller('ledCtrl',
 
   });
     modalInstance.result.then(function() {
-          //show users
+          //show users, fetch again since we have new user saved
           $scope.step2_show = false;
           $scope.usersShow = true;
           $scope.$storage = $localStorage;
@@ -58,6 +63,17 @@ $scope.deleteUser = function(user){
   $scope.users.pop(user);
 
 };
+
+//SPA with 2 "pages"
+$scope.showRegister = function(){
+  $scope.registerShow = true;
+  $scope.usersShow = false;
+}
+
+$scope.showUsers = function(){
+  $scope.registerShow = false;
+  $scope.usersShow = true;
+}
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, user,$localStorage) {
 

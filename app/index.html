@@ -29,72 +29,85 @@
 <body style="font-family:Monospace;">
 <div ng-app="ledTrial" ng-controller="ledCtrl">
 
+
+<nav class="navbar navbar-default navbar-fixed-top">
 <div class="container">
+<button ng-click="showUsers()" class="btn btn-default">Users</button>
+<button ng-click="showRegister()" class="btn btn-default">Register</button>
+</div>
+</nav>
+<br><br>
+<div ng-show="registerShow">
 <div  ng-show='step1_show'>
-        <form class="form-signin" ng-submit='step12_change()'>
-            <h4 class="form-signin-heading">name and email:</h4>
-        <ng-form >
-            <label>first name:</label>
-            <input type="text" class="form-control" name="first_name" ng-model="user.firstName" required>
-            <label>last name:</label>
-            <input type="text" class="form-control" name="last_name" ng-model="user.lastName" required>
-            <label>email:</label>
-            <input type="email" class="form-control" name="email" ng-model="user.email" required>
-            <p class="help-block" ng-show="userFieldForm.email.$invalid">Valid Email Required</p>
-        <input class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="next" />
-        </ng-form>
-    </form>
+<div class="container">
+    <form class="form-signin" ng-submit='step12_change()'>
+        <h4 class="form-signin-heading">name and email:</h4>
+    <ng-form >
+        <label>first name:</label>
+        <input type="text" class="form-control" name="first_name" ng-model="user.firstName" required>
+        <label>last name:</label>
+        <input type="text" class="form-control" name="last_name" ng-model="user.lastName" required>
+        <label>email:</label>
+        <input type="email" class="form-control" name="email" ng-model="user.email" required>
+        <p class="help-block" ng-show="userFieldForm.email.$invalid">Valid Email Required</p>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="next" />
+    </ng-form>
+</form>
 </div>
 </div>
 <div class="container">
 <div ng-show='step2_show'>
-    <h4 class="form-signin-heading">{{user.firstName}}'s car and cellphone:</h4>
-    <br>
-    <form class='form-signin' ng-submit='step2_next()'>
-        <ng-form >
+<h4 class="form-signin-heading">{{user.firstName}}'s car and cellphone:</h4>
+<br>
+<form class='form-signin' ng-submit='step2_next()'>
+    <ng-form >
 <!-- dynamic selects,first ng-repeat is for keys, second ng-repeat is for values for that key (we save the key into ng-model user.carBrand and use that as the key to search the array in second ng-repeat) -->
-        <label>car brand:</label>
-        <select name='carBrand' ng-model="user.carBrand" class='form-control' ngRequired>
-                <option ng-repeat="(brand,models) in cars">{{brand}}</option>
-            </select>
+    <label>car brand:</label>
+    <select name='carBrand' ng-model="user.carBrand" class='form-control' ngRequired>
+            <option ng-repeat="(brand,models) in cars">{{brand}}</option>
+        </select>
 
-            <label>car model:</label>
-        <select name='carModel' ng-model="user.carModel" class='form-control' >
-                <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
-            </select>
-                <label>cell number:</label>
-                <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x" required>
+        <label>car model:</label>
+    <select name='carModel' ng-model="user.carModel" class='form-control' >
+            <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
+        </select>
+            <label>cell number:</label>
+            <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x" required>
 
-        <input class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="next" />
-        </ng-form>
-    </form>
-        <button class="btn btn-lg btn-primary btn-block" ng-click="step12_change()">back</button>
+    <input class="btn btn-lg btn-primary btn-block" type="submit" id="submit" value="next" />
+    </ng-form>
+</form>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="step12_change()">back</button>
 </div>
 </div>
 
 <script type="text/ng-template" id="SaveCancel.html">
-        <div class="modal-header">
-            <h3>registration details!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="userData in user">
-                <span>{{userData}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">Save</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-        </div>
+    <div class="modal-header">
+        <h3>registration details!</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="userData in user">
+            <span>{{userData}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">Save</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
 </script>
-
+</div>
 <div ng-show='usersShow'>
-<div ng-repeat='user in users'>
-<label>{{user.email}}</label>
-<button ng-click="deleteUser(user)">delete</button>
 <br>
-<div>
+<table>
+
+<tr ng-repeat='user in users'>
+    <td><label>{{user.email}}</label><td>
+    <td><button class='btn btn-warning' ng-click="deleteUser(user)">delete</button><td>
+<tr>
+</table>
+
 </div>
 
 </div>
