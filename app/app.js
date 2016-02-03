@@ -53,6 +53,11 @@ angular.module('ledTrial').controller('ledCtrl',
 
 }
 
+//scope.users is a reference to localstorage.users
+$scope.deleteUser = function(user){
+  $scope.users.pop(user);
+
+};
 
 var ModalInstanceCtrl = function ($scope, $modalInstance, user,$localStorage) {
 
