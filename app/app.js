@@ -2,10 +2,8 @@ var trialModule = angular.module('ledTrial',['ui.bootstrap','ui.mask','ngStorage
 
 angular.module('ledTrial').controller('ledCtrl',
     function ($scope,$modal,$localStorage) {
-    $scope.step1 = "Go";
-    $scope.step2 = "Go Again";
 
-
+    $scope.formFlag = false;
     $scope.step1_show = true;
     $scope.step2_show = false;
 
@@ -51,6 +49,7 @@ angular.module('ledTrial').controller('ledCtrl',
           $scope.usersShow = true;
           $scope.$storage = $localStorage;
           $scope.users = $scope.$storage.users;
+          $scope.formFlag = true;
       }, function() {
         //modal dismissed
         console.log('Modal dismissed at: ' + new Date());
@@ -64,10 +63,17 @@ $scope.deleteUser = function(user){
 
 };
 
+$scope.registerShow = true;
 //SPA with 2 "pages"
 $scope.showRegister = function(){
+  if ($scope.formFlag)
+  {
+    window.location.reload();
+  }
+  else{
   $scope.registerShow = true;
   $scope.usersShow = false;
+}
 }
 
 $scope.showUsers = function(){
@@ -85,6 +91,7 @@ var ModalInstanceCtrl = function ($scope, $modalInstance, user,$localStorage) {
     if ($scope.$storage.users)
     {
       $scope.$storage.users.push(user);
+
     }
     else{
       $scope.$storage.users = [];
