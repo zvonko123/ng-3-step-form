@@ -58,7 +58,6 @@
         <select name='carModel' ng-model="user.carModel" class='form-control' >
                 <option ng-repeat="model in cars[user.carBrand]">{{model}}</option>
             </select>
-        <select ng-model="user.carModel" class='form-control' ng-options=""
                     <span ng-show="myForm.carBrand.$invalid">Select brand of car</span>
                 <br>
                 <input type="text" class="form-control" name="cell" ng-model="user.cell" ui-mask="999 /999 -9999" ui-mask-placeholder ui-mask-placeholder-char="x" required>
