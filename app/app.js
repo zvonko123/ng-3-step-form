@@ -43,6 +43,9 @@ angular.module('ledTrial').controller('ledCtrl',
     modalInstance.result.then(function() {
           //show users
           $scope.step2_show = false;
+          $scope.usersShow = true;
+          $scope.$storage = $localStorage;
+          $scope.users = $scope.$storage.users;
       }, function() {
         //modal dismissed
         console.log('Modal dismissed at: ' + new Date());
